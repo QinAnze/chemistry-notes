@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html><head><title>结构解析</title><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta property="og:title" content="结构解析"/><meta property="og:description" content="第十二章 有机化合物的波谱分析 § 章节概览 § 12.1 电磁波与分子的吸收光谱 12.2 红外光谱（IR） 12.3 核磁共振谱（NMR） 12.4 图谱解析示例 学习目标（重点） § 有机基团的特征红外吸收峰；红外吸收峰与有机物特征基团的关系 化学位移与氢原子核外电子云密度分布；影响化学位移的主要因素；化学位移与有机物结构关系 积分曲线与氢原子数目的关系；自旋耦合和自旋裂分 用红外光谱和核磁共振氢谱对有机物的结构解析 一、概述——有机物结构表征基本程序 § 1."/><meta property="og:image" content="https://qinanze.github.io/chemistry-notes/static/og-image.png"/><meta property="og:width" content="1200"/><meta property="og:height" content="675"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="第十二章 有机化合物的波谱分析 § 章节概览 § 12.1 电磁波与分子的吸收光谱 12.2 红外光谱（IR） 12.3 核磁共振谱（NMR） 12.4 图谱解析示例 学习目标（重点） § 有机基团的特征红外吸收峰；红外吸收峰与有机物特征基团的关系 化学位移与氢原子核外电子云密度分布；影响化学位移的主要因素；化学位移与有机物结构关系 积分曲线与氢原子数目的关系；自旋耦合和自旋裂分 用红外光谱和核磁共振氢谱对有机物的结构解析 一、概述——有机物结构表征基本程序 § 1."/><meta name="generator" content="Quartz"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link href="../../index.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><link href="https://fonts.googleapis.com/css2?family=IBM Plex Mono&amp;family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet" type="text/css" spa-preserve/><script src="../../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch(`../../static/contentIndex.json`).then(data => data.json())</script></head><body data-slug="有机化学/上课笔记/结构解析"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h1 class="page-title"><a href="../..">🪴 Quartz 4.0</a></h1><div class="spacer mobile-only"></div><div class="search"><div id="search-icon"><p>Search</p><div></div><svg tabIndex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search</title><desc id="desc">Search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></div><div id="search-container"><div id="search-space"><input autocomplete="off" id="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div id="results-container"></div></div></div></div><div class="darkmode"><input class="toggle" id="darkmode-toggle" type="checkbox" tabIndex="-1"/><label id="toggle-label-light" for="darkmode-toggle" tabIndex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35;" xmlSpace="preserve"><title>Light mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg></label><label id="toggle-label-dark" for="darkmode-toggle" tabIndex="-1"><svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'" xmlSpace="preserve"><title>Dark mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></label></div><div class="toc desktop-only"><button type="button" id="toc"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="toc-content"><ul class="overflow"><li class="depth-0"><a href="#第十二章-有机化合物的波谱分析" data-for="第十二章-有机化合物的波谱分析">第十二章 有机化合物的波谱分析</a></li><li class="depth-1"><a href="#章节概览" data-for="章节概览">章节概览</a></li><li class="depth-1"><a href="#学习目标重点" data-for="学习目标重点">学习目标（重点）</a></li><li class="depth-1"><a href="#一概述有机物结构表征基本程序" data-for="一概述有机物结构表征基本程序">一、概述——有机物结构表征基本程序</a></li><li class="depth-2"><a href="#11-基本流程" data-for="11-基本流程">1.1 基本流程</a></li><li class="depth-2"><a href="#12-化学方法-vs-物理方法" data-for="12-化学方法-vs-物理方法">1.2 化学方法 vs 物理方法</a></li><li class="depth-1"><a href="#二电磁波与分子的吸收光谱121" data-for="二电磁波与分子的吸收光谱121">二、电磁波与分子的吸收光谱（12.1）</a></li><li class="depth-2"><a href="#21-电磁波的基本性质" data-for="21-电磁波的基本性质">2.1 电磁波的基本性质</a></li><li class="depth-2"><a href="#22-电磁波类型与波谱分析方法" data-for="22-电磁波类型与波谱分析方法">2.2 电磁波类型与波谱分析方法</a></li><li class="depth-1"><a href="#三红外吸收光谱-ir122" data-for="三红外吸收光谱-ir122">三、红外吸收光谱 IR（12.2）⭐</a></li><li class="depth-2"><a href="#31-基本原理" data-for="31-基本原理">3.1 基本原理</a></li><li class="depth-2"><a href="#32-红外光谱与分子结构的关系" data-for="32-红外光谱与分子结构的关系">3.2 红外光谱与分子结构的关系</a></li><li class="depth-2"><a href="#33-常见官能团特征频率必记" data-for="33-常见官能团特征频率必记">3.3 常见官能团特征频率（必记）⭐⭐⭐</a></li><li class="depth-2"><a href="#34-各类有机物-ir-特征" data-for="34-各类有机物-ir-特征">3.4 各类有机物 IR 特征</a></li><li class="depth-2"><a href="#35-ir-解析步骤" data-for="35-ir-解析步骤">3.5 IR 解析步骤</a></li><li class="depth-1"><a href="#四核磁共振谱-nmr123" data-for="四核磁共振谱-nmr123">四、核磁共振谱 NMR（12.3）⭐⭐⭐</a></li><li class="depth-2"><a href="#41-基本原理" data-for="41-基本原理">4.1 基本原理</a></li><li class="depth-2"><a href="#42-化学位移-delta-" data-for="42-化学位移-delta-">4.2 化学位移 \delta ⭐</a></li><li class="depth-2"><a href="#43-自旋偶合与自旋裂分-" data-for="43-自旋偶合与自旋裂分-">4.3 自旋偶合与自旋裂分 ⭐⭐⭐</a></li><li class="depth-1"><a href="#五图谱解析示例124" data-for="五图谱解析示例124">五、图谱解析示例（12.4）</a></li><li class="depth-2"><a href="#51-不饱和度计算" data-for="51-不饱和度计算">5.1 不饱和度计算</a></li><li class="depth-2"><a href="#52-解析基本思路" data-for="52-解析基本思路">5.2 解析基本思路</a></li><li class="depth-2"><a href="#53-经典例题" data-for="53-经典例题">5.3 经典例题</a></li><li class="depth-1"><a href="#六关键数据速查表" data-for="六关键数据速查表">六、关键数据速查表</a></li><li class="depth-2"><a href="#ir-官能团区四大关键峰" data-for="ir-官能团区四大关键峰">IR 官能团区四大关键峰</a></li><li class="depth-2"><a href="#nmr-几大特征信号" data-for="nmr-几大特征信号">NMR 几大特征信号</a></li><li class="depth-1"><a href="#考试重点提醒" data-for="考试重点提醒">考试重点提醒</a></li></ul></div></div></div><div class="center"><div class="page-header"><div class="popover-hint"><h1 class="article-title">结构解析</h1><p class="content-meta">Jun 22, 2026, 13 min read</p><ul class="tags"><li><a href="../../tags/有机化学" class="internal tag-link">#有机化学</a></li><li><a href="../../tags/波谱分析" class="internal tag-link">#波谱分析</a></li><li><a href="../../tags/结构解析" class="internal tag-link">#结构解析</a></li><li><a href="../../tags/期末考试" class="internal tag-link">#期末考试</a></li></ul></div></div><article class="popover-hint"><h1 id="第十二章-有机化合物的波谱分析">第十二章 有机化合物的波谱分析<a aria-hidden="true" tabindex="-1" href="#第十二章-有机化合物的波谱分析" class="internal"> §</a></h1>
+<h2 id="章节概览">章节概览<a aria-hidden="true" tabindex="-1" href="#章节概览" class="internal"> §</a></h2>
+<ul>
+<li><strong>12.1</strong> 电磁波与分子的吸收光谱</li>
+<li><strong>12.2</strong> 红外光谱（IR）</li>
+<li><strong>12.3</strong> 核磁共振谱（NMR）</li>
+<li><strong>12.4</strong> 图谱解析示例</li>
+</ul>
+<hr/>
+<h2 id="学习目标重点">学习目标（重点）<a aria-hidden="true" tabindex="-1" href="#学习目标重点" class="internal"> §</a></h2>
+<blockquote>
+<ol>
+<li>有机基团的<strong>特征红外吸收峰</strong>；红外吸收峰与有机物特征基团的关系</li>
+<li><strong>化学位移</strong>与氢原子核外电子云密度分布；影响化学位移的主要因素；化学位移与有机物结构关系</li>
+<li><strong>积分曲线</strong>与氢原子数目的关系；<strong>自旋耦合和自旋裂分</strong></li>
+<li>用红外光谱和核磁共振氢谱对<strong>有机物的结构解析</strong></li>
+</ol>
+</blockquote>
+<hr/>
+<h2 id="一概述有机物结构表征基本程序">一、概述——有机物结构表征基本程序<a aria-hidden="true" tabindex="-1" href="#一概述有机物结构表征基本程序" class="internal"> §</a></h2>
+<h3 id="11-基本流程">1.1 基本流程<a aria-hidden="true" tabindex="-1" href="#11-基本流程" class="internal"> §</a></h3>
+<pre><code>分离提纯 → 元素定性定量分析 → 分子量测定 → 结构表征
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>步骤</th><th>方法</th></tr></thead><tbody><tr><td>分离提纯</td><td>蒸馏、萃取、升华、重结晶、层析</td></tr><tr><td>元素分析</td><td>元素分析仪</td></tr><tr><td>官能团分析</td><td>化学法 + 物理法</td></tr><tr><td>分子量测定</td><td>凝固点降低法、沸点升高法、质谱（MS）</td></tr></tbody></table>
+<h3 id="12-化学方法-vs-物理方法">1.2 化学方法 vs 物理方法<a aria-hidden="true" tabindex="-1" href="#12-化学方法-vs-物理方法" class="internal"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>化学方法</th><th>物理方法（波谱）</th></tr></thead><tbody><tr><td><strong>特点</strong></td><td>费时、费力、费钱，试剂消耗大</td><td>样品用量少，准确快速</td></tr><tr><td><strong>例子</strong></td><td>吗啡结构确定用了 146 年（1806→1952）</td><td>UV/IR/NMR/MS</td></tr><tr><td><strong>费用</strong></td><td>—</td><td>仪器昂贵（NMR 100-1000 万）</td></tr></tbody></table>
+<h4 id="四大波谱方法">四大波谱方法<a aria-hidden="true" tabindex="-1" href="#四大波谱方法" class="internal"> §</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法</th><th>缩写</th><th>仪器价格</th><th>样品用量</th><th>主要用途</th></tr></thead><tbody><tr><td>紫外吸收光谱</td><td>UV</td><td>1-20 万</td><td>0.01-5 mg</td><td>共轭体系</td></tr><tr><td>红外吸收光谱</td><td>IR</td><td>5-50 万</td><td>0.1-1 mg</td><td><strong>官能团鉴定</strong></td></tr><tr><td>核磁共振谱</td><td>NMR</td><td>100-1000 万</td><td>1-5 mg</td><td><strong>结构测定</strong></td></tr><tr><td>质谱</td><td>MS</td><td>50-500 万</td><td>0.001-0.1 mg</td><td>分子量、碎片</td></tr></tbody></table>
+<hr/>
+<h2 id="二电磁波与分子的吸收光谱121">二、电磁波与分子的吸收光谱（12.1）<a aria-hidden="true" tabindex="-1" href="#二电磁波与分子的吸收光谱121" class="internal"> §</a></h2>
+<h3 id="21-电磁波的基本性质">2.1 电磁波的基本性质<a aria-hidden="true" tabindex="-1" href="#21-电磁波的基本性质" class="internal"> §</a></h3>
+<ul>
+<li>光具有<strong>波粒二象性</strong></li>
+<li><strong>波动性</strong>：<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mord">/</span><span class="mord mathnormal">λ</span></span></span></span></span>，<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span class="mord mathnormal">λ</span></span></span></span></span>（波数，cm⁻¹）</li>
+<li><strong>粒子性</strong>：<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mord mathnormal">c</span><span class="mord">/</span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span></span></span></span></span></li>
+<li><strong>波长愈短，能量愈大</strong></li>
+</ul>
+<h3 id="22-电磁波类型与波谱分析方法">2.2 电磁波类型与波谱分析方法<a aria-hidden="true" tabindex="-1" href="#22-电磁波类型与波谱分析方法" class="internal"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>波谱方法</th><th>激发能级</th><th>波长范围</th><th>电磁波类型</th></tr></thead><tbody><tr><td>X 射线光谱</td><td>内层电子</td><td>0.01-10 nm</td><td>X 射线</td></tr><tr><td>UV-Vis</td><td>n 及 π 电子</td><td>200-800 nm</td><td>紫外-可见光</td></tr><tr><td>IR</td><td>振动与转动</td><td>0.8-300 μm</td><td>红外线</td></tr><tr><td>ESR</td><td>电子自旋</td><td>0.3-100 mm</td><td>微波</td></tr><tr><td><strong>NMR</strong></td><td>原子核自旋</td><td>0.1-1000 m</td><td><strong>无线电波</strong></td></tr></tbody></table>
+<blockquote>
+<p><strong>核心理解</strong>：不同波长的电磁波激发分子不同能级的跃迁——UV-Vis 激发电子跃迁，IR 激发振动转动跃迁，NMR 激发核自旋跃迁。</p>
+</blockquote>
+<hr/>
+<h2 id="三红外吸收光谱-ir122">三、红外吸收光谱 IR（12.2）⭐<a aria-hidden="true" tabindex="-1" href="#三红外吸收光谱-ir122" class="internal"> §</a></h2>
+<h3 id="31-基本原理">3.1 基本原理<a aria-hidden="true" tabindex="-1" href="#31-基本原理" class="internal"> §</a></h3>
+<p>分子吸收红外光 → <strong>振动和转动能级跃迁</strong> → 红外吸收光谱</p>
+<p><strong>用途</strong>：剖析分子<strong>特征官能团</strong>。</p>
+<h4 id="1分子振动类型">（1）分子振动类型<a aria-hidden="true" tabindex="-1" href="#1分子振动类型" class="internal"> §</a></h4>
+<ul>
+<li><strong>伸缩振动</strong>：对称伸缩（<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0637em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>）、反对称伸缩（<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0637em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>）</li>
+<li><strong>弯曲振动</strong>：面内弯曲（剪切、卷曲）、面外弯曲（摇摆、扭曲）</li>
+</ul>
+<h4 id="2振动频率--hooke-定律">（2）振动频率 —— Hooke 定律<a aria-hidden="true" tabindex="-1" href="#2振动频率--hooke-定律" class="internal"> §</a></h4>
+<p><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.84em;vertical-align:-0.6555em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span><span class="mord mathnormal mtight">c</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1845em;"><span class="svg-align" style="top:-3.8em;"><span class="pstrut" style="height:3.8em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">μ</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4811em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.1445em;"><span class="pstrut" style="height:3.8em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.88em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.88em" viewBox="0 0 400000 1944" preserveAspectRatio="xMinYMin slice"><path d="M983 90
+l0 -0
+c4,-6.7,10,-10,18,-10 H400000v40
+H1013.1s-83.4,268,-264.1,840c-180.7,572,-277,876.3,-289,913c-4.7,4.7,-12.7,7,-24,7
+s-12,0,-12,0c-1.3,-3.3,-3.7,-11.7,-7,-25c-35.3,-125.3,-106.7,-373.3,-214,-744
+c-10,12,-21,25,-33,39s-32,39,-32,39c-6,-5.3,-15,-14,-27,-26s25,-30,25,-30
+c26.7,-32.7,52,-63,76,-91s52,-60,52,-60s208,722,208,722
+c56,-175.3,126.3,-397.3,211,-666c84.7,-268.7,153.8,-488.2,207.5,-658.5
+c53.7,-170.3,84.5,-266.8,92.5,-289.5z
+M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.6555em;"><span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">μ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1566em;vertical-align:-0.4451em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7115em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<ul>
+<li><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></span>：化学键<strong>力常数</strong>（N/cm）</li>
+<li><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span></span></span></span></span>：折合质量</li>
+<li><strong>键的振动频率与力常数成正比，与成键原子质量成反比</strong></li>
+</ul>
+<h4 id="3红外光谱产生的两个条件">（3）红外光谱产生的两个条件<a aria-hidden="true" tabindex="-1" href="#3红外光谱产生的两个条件" class="internal"> §</a></h4>
+<ol>
+<li>辐射光频率与分子振动频率<strong>相当</strong>（<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span></span></span></span></span>）</li>
+<li>分子振动必须引起<strong>偶极矩变化</strong>（极性键有吸收，非极性同核双原子分子无 IR 吸收）</li>
+</ol>
+<blockquote>
+<p>化学键极性越强 → 振动时偶极矩变化越大 → 吸收峰越强</p>
+</blockquote>
+<h3 id="32-红外光谱与分子结构的关系">3.2 红外光谱与分子结构的关系<a aria-hidden="true" tabindex="-1" href="#32-红外光谱与分子结构的关系" class="internal"> §</a></h3>
+<h4 id="特征吸收峰官能团区40001300-cm">特征吸收峰（官能团区）：<strong>4000–1300 cm⁻¹</strong><a aria-hidden="true" tabindex="-1" href="#特征吸收峰官能团区40001300-cm" class="internal"> §</a></h4>
+<ul>
+<li>由化学键和官能团的<strong>伸缩振动</strong>产生</li>
+<li>用于判断化合物<strong>是否具有某种官能团</strong></li>
+</ul>
+<h4 id="指纹区1300400-cm">指纹区：<strong>1300–400 cm⁻¹</strong><a aria-hidden="true" tabindex="-1" href="#指纹区1300400-cm" class="internal"> §</a></h4>
+<ul>
+<li>吸收峰密集复杂，像人的指纹</li>
+<li>用于<strong>区别或确定具体化合物</strong></li>
+<li>分子结构的微小差异都能在指纹区得到反映</li>
+</ul>
+<h3 id="33-常见官能团特征频率必记">3.3 常见官能团特征频率（必记）⭐⭐⭐<a aria-hidden="true" tabindex="-1" href="#33-常见官能团特征频率必记" class="internal"> §</a></h3>
+<h4 id="单键伸缩振动">单键伸缩振动<a aria-hidden="true" tabindex="-1" href="#单键伸缩振动" class="internal"> §</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>化学键</th><th>波数 (cm⁻¹)</th><th>备注</th></tr></thead><tbody><tr><td>O–H（醇、酚）</td><td>3200–3600</td><td><strong>宽峰（馒头峰）</strong>，氢键缔合</td></tr><tr><td>O–H（羧酸）</td><td>2500–3600</td><td>更宽</td></tr><tr><td>N–H</td><td>3350–3500</td><td></td></tr><tr><td>≡C–H（sp）</td><td>3310–3320</td><td></td></tr><tr><td>=C–H（sp²）</td><td>3000–3100</td><td></td></tr><tr><td>–C–H（sp³）</td><td>2850–2950</td><td>饱和 C-H，<strong>3000 为分界线</strong></td></tr><tr><td>C–O</td><td>1025–1200</td><td></td></tr></tbody></table>
+<h4 id="双键伸缩振动">双键伸缩振动<a aria-hidden="true" tabindex="-1" href="#双键伸缩振动" class="internal"> §</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>化学键</th><th>波数 (cm⁻¹)</th></tr></thead><tbody><tr><td>C=C</td><td>1620–1680</td></tr><tr><td><strong>C=O</strong></td><td><strong>1700–1900</strong>（强吸收，特征峰）</td></tr><tr><td>┗ 醛和酮</td><td>1710–1750</td></tr><tr><td>┗ 羧酸</td><td>1700–1725</td></tr><tr><td>┗ 酸酐</td><td>1800–1850 &amp; 1740–1790（双峰）</td></tr><tr><td>┗ 酰卤</td><td>1770–1815</td></tr><tr><td>┗ 酯</td><td>1730–1750</td></tr><tr><td>┗ 酰胺</td><td>1680–1700</td></tr></tbody></table>
+<h4 id="三键伸缩振动">三键伸缩振动<a aria-hidden="true" tabindex="-1" href="#三键伸缩振动" class="internal"> §</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>化学键</th><th>波数 (cm⁻¹)</th></tr></thead><tbody><tr><td>–C≡C–</td><td>2100–2200</td></tr><tr><td>–C≡N</td><td>2240–2280</td></tr></tbody></table>
+<h3 id="34-各类有机物-ir-特征">3.4 各类有机物 IR 特征<a aria-hidden="true" tabindex="-1" href="#34-各类有机物-ir-特征" class="internal"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>化合物类型</th><th>特征吸收</th></tr></thead><tbody><tr><td><strong>烷烃</strong></td><td>C–H 伸缩 2850–2960；CH₂ 弯曲 1450–1470；CH₃ 弯曲 1370–1380</td></tr><tr><td><strong>烯烃</strong></td><td>=C–H 伸缩 3000–3100；C=C 伸缩 1620–1680；=C–H 面外弯曲可判取代类型</td></tr><tr><td><strong>炔烃</strong></td><td>≡C–H 伸缩 ~3315；C≡C 伸缩 ~2130</td></tr><tr><td><strong>芳烃</strong></td><td>Ar–H 伸缩 3000–3100；C=C 骨架 1450–1600（1-4 个峰）；面外弯曲可判邻接 H 数目</td></tr><tr><td><strong>醇</strong></td><td>O–H 伸缩 3200–3400（<strong>馒头峰</strong>）；C–O 伸缩 ~1200</td></tr><tr><td><strong>醛酮</strong></td><td>C=O 伸缩 1700–1750（强）；醛基 C–H ~2717（特征）</td></tr></tbody></table>
+<h3 id="35-ir-解析步骤">3.5 IR 解析步骤<a aria-hidden="true" tabindex="-1" href="#35-ir-解析步骤" class="internal"> §</a></h3>
+<ol>
+<li>观察官能团区 → 找出官能团吸收 → <strong>确定化合物类型</strong></li>
+<li>观察指纹区 → <strong>确定基团间结合方式</strong></li>
+<li>结合制备过程、其他方法 → <strong>确定可能的构造式</strong></li>
+<li>如果是已知化合物 → 查阅<strong>标准谱图</strong>验证</li>
+</ol>
+<hr/>
+<h2 id="四核磁共振谱-nmr123">四、核磁共振谱 NMR（12.3）⭐⭐⭐<a aria-hidden="true" tabindex="-1" href="#四核磁共振谱-nmr123" class="internal"> §</a></h2>
+<h3 id="41-基本原理">4.1 基本原理<a aria-hidden="true" tabindex="-1" href="#41-基本原理" class="internal"> §</a></h3>
+<blockquote>
+<p><strong>核磁共振</strong>：核磁矩不为零的核，在外磁场中自旋能级发生<strong>塞曼分裂</strong>（Zeeman Splitting），原子核吸收特定频率的射频辐射发生共振跃迁。</p>
+</blockquote>
+<h4 id="1自旋量子数-i">（1）自旋量子数 I<a aria-hidden="true" tabindex="-1" href="#1自旋量子数-i" class="internal"> §</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>条件</th><th>I</th><th>磁性</th></tr></thead><tbody><tr><td>质子数、中子数均为偶数</td><td>0</td><td>非磁性核（¹²C, ¹⁶O）</td></tr><tr><td>质子数、中子数不同为偶数</td><td><strong>≠ 0</strong></td><td><strong>磁性核</strong>（¹H, ¹³C, ¹⁹F, ³¹P）</td></tr></tbody></table>
+<blockquote>
+<p>只有 <strong>I ≠ 0</strong> 的核才能进行 NMR 观测。</p>
+</blockquote>
+<h4 id="2能级分裂与共振条件">（2）能级分裂与共振条件<a aria-hidden="true" tabindex="-1" href="#2能级分裂与共振条件" class="internal"> §</a></h4>
+<ul>
+<li>外磁场中磁矩取向数 = <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></li>
+<li>¹H 的 <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/2</span></span></span></span></span>，裂分为 2 个能级</li>
+<li><strong>共振条件</strong>：<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8833em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span><span class="mord">ℏ</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></li>
+<li><strong>拉莫尔进动频率</strong>：<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>，<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.06366em;">ν</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2694em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9244em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05556em;">γ</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0502em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></li>
+</ul>
+<blockquote>
+<p>不同核磁旋比 <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span></span></span></span></span> 不同，相同磁场下共振频率不同。</p>
+<p>例：400 MHz 仪器 → ¹H 400 MHz, ¹³C 100.56 MHz</p>
+</blockquote>
+<h4 id="3饱和与弛豫">（3）饱和与弛豫<a aria-hidden="true" tabindex="-1" href="#3饱和与弛豫" class="internal"> §</a></h4>
+<ul>
+<li><strong>饱和</strong>：低能态核全部跃迁到高能态，不再吸收能量</li>
+<li><strong>弛豫</strong>：高能态核以非辐射形式回到低能态，恢复 Boltzmann 分布
+<ul>
+<li><strong>纵向弛豫</strong>（自旋-晶格）：与环境交换能量</li>
+<li><strong>横向弛豫</strong>（自旋-自旋）：同类核之间交换能量，不影响总能态分布</li>
+</ul>
+</li>
+</ul>
+<h4 id="4nmr-氢谱提供的三种关键信息">（4）NMR 氢谱提供的三种关键信息<a aria-hidden="true" tabindex="-1" href="#4nmr-氢谱提供的三种关键信息" class="internal"> §</a></h4>
+<ol>
+<li><strong>化学位移</strong> <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> → 质子化学环境</li>
+<li><strong>耦合常数</strong> <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span></span></span></span></span> → 相邻质子关系</li>
+<li><strong>积分值</strong> → 质子数目比例</li>
+</ol>
+<hr/>
+<h3 id="42-化学位移-delta-">4.2 化学位移 <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> ⭐<a aria-hidden="true" tabindex="-1" href="#42-化学位移-delta-" class="internal"> §</a></h3>
+<h4 id="定义">定义<a aria-hidden="true" tabindex="-1" href="#定义" class="internal"> §</a></h4>
+<p><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2639em;vertical-align:-0.4453em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8186em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.06366em;">ν</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.0637em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">参考</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4103em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.06366em;">ν</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.0637em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">样品</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.06366em;">ν</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:-0.0637em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">参考</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4453em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span><span class="mspace"> </span><span class="mopen">(</span><span class="mord text"><span class="mord">ppm</span></span><span class="mclose">)</span></span></span></span></span></p>
+<ul>
+<li>参考标准物：<strong>TMS</strong>（四甲基硅烷，<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>）</li>
+<li>为什么用 TMS？
+<ul>
+<li>12 个 H 化学环境完全相同，单一尖峰</li>
+<li>屏蔽最强烈（<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span></span></span></span></span> 最大），不与有机物峰重叠</li>
+<li>化学惰性，易溶于有机溶剂，沸点低易回收</li>
+</ul>
+</li>
+</ul>
+<h4 id="屏蔽效应与化学位移的关系">屏蔽效应与化学位移的关系<a aria-hidden="true" tabindex="-1" href="#屏蔽效应与化学位移的关系" class="internal"> §</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th align="center">电子云密度↑</th><th align="center">屏蔽效应↑</th><th align="center"><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span>↓</th><th align="center">出峰位置</th></tr></thead><tbody><tr><td><strong>高场</strong></td><td align="center">大</td><td align="center">强</td><td align="center"><strong>小</strong></td><td align="center">右</td></tr><tr><td><strong>低场</strong></td><td align="center">小</td><td align="center">弱</td><td align="center"><strong>大</strong></td><td align="center">左</td></tr></tbody></table>
+<h4 id="常见质子化学位移范围必记">常见质子化学位移范围（必记）<a aria-hidden="true" tabindex="-1" href="#常见质子化学位移范围必记" class="internal"> §</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>质子类型</th><th align="center"><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> (ppm)</th></tr></thead><tbody><tr><td>烷烃 C–H（伯、仲、叔）</td><td align="center">0.9–1.8</td></tr><tr><td>与 C=C 相连的 CH₃/CH₂/CH</td><td align="center">1.9–2.6</td></tr><tr><td>与 C=O 相连的 CH₃/CH₂/CH</td><td align="center">2.1–2.5</td></tr><tr><td>≡C–H</td><td align="center">2.5</td></tr><tr><td>与卤素/OR/NR₂ 相连</td><td align="center">2.7–4.1</td></tr><tr><td>烯烃 =C–H</td><td align="center">4.5–6.5</td></tr><tr><td>芳烃 Ar–H</td><td align="center">6.5–8.5</td></tr><tr><td>醛基 <strong>–CHO</strong></td><td align="center"><strong>9.0–10.0</strong></td></tr><tr><td>羧酸 –COOH</td><td align="center">10–13</td></tr><tr><td>醇/酚 –OH</td><td align="center">0.5–5.0（可变）</td></tr></tbody></table>
+<blockquote>
+<p><strong>等性质子</strong>（化学环境相同的质子）具有大致相同的 <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span>。</p>
+</blockquote>
+<h4 id="影响化学位移的因素">影响化学位移的因素<a aria-hidden="true" tabindex="-1" href="#影响化学位移的因素" class="internal"> §</a></h4>
+<p><strong>（1）电负性（诱导效应）</strong></p>
+<ul>
+<li>邻近原子电负性↑ → 氢核周围电子云密度↓ → 屏蔽↓ → <strong><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span>↑（低场移动）</strong></li>
+<li>吸电子基团越多影响越大，距离越远影响越小</li>
+</ul>
+<p><strong>（2）磁各向异性效应</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>结构</th><th>效应</th></tr></thead><tbody><tr><td><strong>烯烃 C=C</strong></td><td>双键平面上的质子：<strong>去屏蔽</strong>，出峰低场</td></tr><tr><td><strong>芳烃</strong></td><td>苯环平面侧面的质子：<strong>去屏蔽</strong>，<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 7 左右</td></tr><tr><td><strong>炔烃</strong></td><td>三键轴上质子：<strong>屏蔽</strong>，出峰较高场</td></tr><tr><td><strong>C=O</strong></td><td>类似双键效应</td></tr></tbody></table>
+<p><strong>（3）氢键效应</strong></p>
+<ul>
+<li>形成氢键 → 去屏蔽效应 → <strong><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 增大（低场）</strong></li>
+<li>例：乙醇 OH 在不同条件下 <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 为 0.5–5.0 ppm</li>
+</ul>
+<p><strong>（4）其他因素</strong>：范德华效应、温度、溶剂</p>
+<hr/>
+<h3 id="43-自旋偶合与自旋裂分-">4.3 自旋偶合与自旋裂分 ⭐⭐⭐<a aria-hidden="true" tabindex="-1" href="#43-自旋偶合与自旋裂分-" class="internal"> §</a></h3>
+<h4 id="基本概念">基本概念<a aria-hidden="true" tabindex="-1" href="#基本概念" class="internal"> §</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>概念</th><th>定义</th></tr></thead><tbody><tr><td><strong>等性质子</strong></td><td>化学环境相同，<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 相同</td></tr><tr><td><strong>自旋偶合</strong></td><td>分子中相邻<strong>不等性质子</strong>之间的自旋相互作用</td></tr><tr><td><strong>自旋裂分</strong></td><td>自旋偶合使吸收峰分裂成<strong>多重峰</strong>的现象</td></tr><tr><td><strong>偶合常数 <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span></span></span></span></span></strong></td><td>裂分峰之间的距离（Hz）</td></tr></tbody></table>
+<h4 id="裂分规律重点必记">裂分规律（重点，必记）<a aria-hidden="true" tabindex="-1" href="#裂分规律重点必记" class="internal"> §</a></h4>
+<ol>
+<li><strong>质子之间超过 3 根共价键，不产生裂分</strong></li>
+<li><strong>等性质子之间不产生裂分</strong></li>
+<li><strong>n+1 规则</strong>：质子相邻碳上有 <strong>n 个等性质子</strong>时，裂分为 <strong>n+1 重峰</strong></li>
+<li>相邻碳上有磁不等性质子时，裂分数目为各组的乘积</li>
+<li><strong>N、O、S 等电负性大的原子上质子一般不参与偶合</strong>（出单峰）</li>
+</ol>
+<h4 id="积分曲线">积分曲线<a aria-hidden="true" tabindex="-1" href="#积分曲线" class="internal"> §</a></h4>
+<ul>
+<li>吸收峰<strong>面积</strong>与等性质子<strong>数目成正比</strong></li>
+<li>积分曲线高度比 = 质子数目比</li>
+</ul>
+<hr/>
+<h2 id="五图谱解析示例124">五、图谱解析示例（12.4）<a aria-hidden="true" tabindex="-1" href="#五图谱解析示例124" class="internal"> §</a></h2>
+<h3 id="51-不饱和度计算">5.1 不饱和度计算<a aria-hidden="true" tabindex="-1" href="#51-不饱和度计算" class="internal"> §</a></h3>
+<p><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Ω</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1634em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8184em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<blockquote>
+<p>仅含 C、H、O 时：<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Ω</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.2064em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8614em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4103em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="center"><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Ω</span></span></span></span></span></th><th>含义</th></tr></thead><tbody><tr><td align="center">0</td><td>饱和</td></tr><tr><td align="center">1</td><td>1 个双键或 1 个脂环</td></tr><tr><td align="center">2</td><td>三键 / 2 个双键 / 双键+脂环</td></tr><tr><td align="center">4</td><td>苯环</td></tr></tbody></table>
+<h3 id="52-解析基本思路">5.2 解析基本思路<a aria-hidden="true" tabindex="-1" href="#52-解析基本思路" class="internal"> §</a></h3>
+<ol>
+<li>计算<strong>不饱和度</strong> <span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Ω</span></span></span></span></span>，初步判断骨架类型</li>
+<li>分析 <strong>IR</strong>：找出特征官能团（C=O、O–H、N–H 等）</li>
+<li>分析 <strong>¹H NMR</strong>：
+<ul>
+<li>化学位移 → 质子类型</li>
+<li>积分面积 → 各类型质子数目比例</li>
+<li>裂分情况 → 相邻质子数目（n+1 规则）</li>
+</ul>
+</li>
+<li>拼出可能结构 → 验证所有谱图数据一致性</li>
+</ol>
+<h3 id="53-经典例题">5.3 经典例题<a aria-hidden="true" tabindex="-1" href="#53-经典例题" class="internal"> §</a></h3>
+<p><strong>例</strong>：C₅H₁₀O，IR：1700 cm⁻¹ 强吸收；¹H NMR：<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 1.02（二重峰），<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 2.13（单峰），<span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 2.22（七重峰）</p>
+<ul>
+<li><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Ω</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">10/2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> → 有 C=O</li>
+<li>IR 1700 → 羰基</li>
+<li><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 2.13（3H, 单峰）→ CH₃–C=O</li>
+<li><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 1.02（6H, 二重峰）→ 两个等价 CH₃–CH</li>
+<li><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span> 2.22（1H, 七重峰）→ CH(CH₃)₂</li>
+<li>结构：<strong>(CH₃)₂CH–CO–CH₃</strong>（3-甲基-2-丁酮）</li>
+</ul>
+<hr/>
+<h2 id="六关键数据速查表">六、关键数据速查表<a aria-hidden="true" tabindex="-1" href="#六关键数据速查表" class="internal"> §</a></h2>
+<h3 id="ir-官能团区四大关键峰">IR 官能团区四大关键峰<a aria-hidden="true" tabindex="-1" href="#ir-官能团区四大关键峰" class="internal"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>波数</th><th>归属</th></tr></thead><tbody><tr><td>~1700 cm⁻¹（强）</td><td><strong>C=O</strong></td></tr><tr><td>3200–3600 cm⁻¹（宽）</td><td><strong>O–H</strong>（醇/酚）</td></tr><tr><td>~3300 cm⁻¹</td><td><strong>≡C–H</strong> 或 <strong>N–H</strong></td></tr><tr><td>3000 分界线</td><td>sp²(=C–H) 以上 / sp³(–C–H) 以下</td></tr></tbody></table>
+<h3 id="nmr-几大特征信号">NMR 几大特征信号<a aria-hidden="true" tabindex="-1" href="#nmr-几大特征信号" class="internal"> §</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="center"><span class="math math-inline"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span></span></span></span></span></th><th>归属</th></tr></thead><tbody><tr><td align="center">9.0–10.0</td><td><strong>醛基 –CHO</strong></td></tr><tr><td align="center">10–13</td><td><strong>羧酸 –COOH</strong></td></tr><tr><td align="center">6.5–8.5</td><td><strong>芳环 Ar–H</strong></td></tr><tr><td align="center">~2.1（单峰，3H）</td><td><strong>CH₃–C=O</strong></td></tr><tr><td align="center">0.8–1.5</td><td><strong>烷烃 –CH₃</strong></td></tr></tbody></table>
+<hr/>
+<h2 id="考试重点提醒">考试重点提醒<a aria-hidden="true" tabindex="-1" href="#考试重点提醒" class="internal"> §</a></h2>
+<ol>
+<li>⭐ IR 特征频率表必须记忆（O–H、C=O、C=C、≡C–H、–C–H 五种）</li>
+<li>⭐ NMR 化学位移范围（醛基、芳环、烷基等）</li>
+<li>⭐ <strong>n+1 规则</strong>和裂分规律</li>
+<li>⭐ <strong>不饱和度</strong>计算公式</li>
+<li>⭐ 综合 IR + NMR 推断有机结构</li>
+</ol></article></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div id="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1}"></div><svg version="1.1" id="global-graph-icon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xmlSpace="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+	s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+	c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+	C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+	c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+	v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+	s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+	C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+	S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+	s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+	s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></div><div id="global-graph-outer"><div id="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1}"></div></div></div><div class="backlinks"><h3>Backlinks</h3><ul class="overflow"><li>No backlinks found</li></ul></div></div></div><footer><hr/><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.0.8</a>, © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></body><script type="application/javascript">// quartz/components/scripts/quartz/components/scripts/callout.inline.ts
+function toggleCallout() {
+  const outerBlock = this.parentElement;
+  outerBlock.classList.toggle(`is-collapsed`);
+  const collapsed = outerBlock.classList.contains(`is-collapsed`);
+  const height = collapsed ? this.scrollHeight : outerBlock.scrollHeight;
+  outerBlock.style.maxHeight = height + `px`;
+  let current = outerBlock;
+  let parent = outerBlock.parentElement;
+  while (parent) {
+    if (!parent.classList.contains(`callout`)) {
+      return;
+    }
+    const collapsed2 = parent.classList.contains(`is-collapsed`);
+    const height2 = collapsed2 ? parent.scrollHeight : parent.scrollHeight + current.scrollHeight;
+    parent.style.maxHeight = height2 + `px`;
+    current = parent;
+    parent = parent.parentElement;
+  }
+}
+function setupCallout() {
+  const collapsible = document.getElementsByClassName(
+    `callout is-collapsible`
+  );
+  for (const div of collapsible) {
+    const title = div.firstElementChild;
+    if (title) {
+      title.removeEventListener(`click`, toggleCallout);
+      title.addEventListener(`click`, toggleCallout);
+      const collapsed = div.classList.contains(`is-collapsed`);
+      const height = collapsed ? title.scrollHeight : div.scrollHeight;
+      div.style.maxHeight = height + `px`;
+    }
+  }
+}
+document.addEventListener(`nav`, setupCallout);
+window.addEventListener(`resize`, setupCallout);
+</script><script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+          const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+          mermaid.initialize({ 
+            startOnLoad: false,
+            securityLevel: 'loose',
+            theme: darkMode ? 'dark' : 'default'
+          });
+          document.addEventListener('nav', async () => {
+            await mermaid.run({
+              querySelector: '.mermaid'
+            })
+          });
+          </script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script src="../../postscript.js" type="module"></script></html>

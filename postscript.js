@@ -40648,6 +40648,20 @@ async function navigate(url, isBack = false) {
 }
 window.spaNavigate = navigate;
 function createRouter() {
+  const BASE_PATH = "/chemistry-notes";
+  document.addEventListener("click", async (e) => {
+    const target = e.target;
+    if (target.id === "page-back-btn" || target.closest("#page-back-btn")) {
+      e.preventDefault();
+      const currentPath = window.location.pathname;
+      if (currentPath !== BASE_PATH + "/" && currentPath !== BASE_PATH) {
+        window.history.back();
+      } else {
+        window.location.href = "https://qinanze.github.io" + BASE_PATH;
+      }
+      return;
+    }
+  });
   if (typeof window !== "undefined") {
     window.addEventListener("click", async (event) => {
       const { url } = getOpts(event) ?? {};
@@ -40664,6 +40678,11 @@ function createRouter() {
       const { url } = getOpts(event) ?? {};
       if (window.location.hash && window.location.pathname === url?.pathname)
         return;
+      const BASE_PATH2 = "/chemistry-notes";
+      if (window.location.pathname === "/" || window.location.pathname === "") {
+        window.location.href = "https://qinanze.github.io" + BASE_PATH2;
+        return;
+      }
       try {
         navigate(new URL(window.location.toString()), true);
       } catch (e) {

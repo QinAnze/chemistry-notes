@@ -1220,7 +1220,10 @@ function simplifySlug(fp) {
   return _stripSlashes(_trimSuffix(fp, "index"), true);
 }
 function pathToRoot(slug2) {
-  let rootPath = slug2.split("/").filter((x2) => x2 !== "").slice(0, -1).map((_) => "..").join("/");
+  const segments = slug2.split("/").filter((x2) => x2 !== "");
+  const isFolder = segments.length > 0 && segments.at(-1) === "index";
+  const upCount = isFolder ? segments.slice(0, -1) : segments;
+  let rootPath = upCount.map((_) => "..").join("/");
   if (rootPath.length === 0) {
     rootPath = ".";
   }
@@ -40382,7 +40385,11 @@ var getOpts = ({ target }) => {
   const { href } = a;
   if (!isLocalUrl(href))
     return;
-  return { url: new URL(href), scroll: "routerNoscroll" in a.dataset ? false : void 0 };
+  const url = new URL(href);
+  if (url.pathname.match(/\.(pdf|zip|png|jpg|jpeg|gif|webp|svg|mp4|webm|ogg|mp3|wav)$/i)) {
+    return;
+  }
+  return { url, scroll: "routerNoscroll" in a.dataset ? false : void 0 };
 };
 function notifyNav(url) {
   const event = new CustomEvent("nav", { detail: { url } });

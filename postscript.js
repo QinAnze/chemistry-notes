@@ -39539,6 +39539,205 @@ if (document.readyState === "loading") {
   initChat();
 }
 })();
+(function () {// quartz/components/scripts/quartz/components/scripts/todo.inline.ts
+var STORAGE_KEY = "quartz-todo-list";
+var todoList = [];
+var isDragging = false;
+var dragTarget = null;
+var dragStartX = 0;
+var dragStartY = 0;
+var initialLeft = 0;
+var initialTop = 0;
+function loadTodos() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
+function saveTodos() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(todoList));
+}
+function renderTodoList() {
+  const listContainer = document.querySelector(".todo-list");
+  if (!listContainer)
+    return;
+  if (todoList.length === 0) {
+    listContainer.innerHTML = '<div class="todo-empty">\u6682\u65E0\u5F85\u529E\u4E8B\u9879<br/>\u6DFB\u52A0\u4E00\u4E2A\u5F00\u59CB\u5427</div>';
+    return;
+  }
+  listContainer.innerHTML = todoList.map(
+    (item) => `
+    <div class="todo-item ${item.checked ? "checked" : ""}" data-id="${item.id}">
+      <input type="checkbox" ${item.checked ? "checked" : ""} />
+      <label>${item.text}</label>
+      <button class="todo-delete" title="\u5220\u9664">\xD7</button>
+    </div>
+  `
+  ).join("");
+  listContainer.querySelectorAll(".todo-item").forEach((item) => {
+    const id = item.getAttribute("data-id");
+    const checkbox = item.querySelector('input[type="checkbox"]');
+    const deleteBtn = item.querySelector(".todo-delete");
+    checkbox?.addEventListener("change", () => {
+      if (id)
+        toggleTodo(id);
+    });
+    item.querySelector("label")?.addEventListener("click", () => {
+      if (id)
+        toggleTodo(id);
+    });
+    deleteBtn?.addEventListener("click", () => {
+      if (id)
+        deleteTodo(id);
+    });
+  });
+}
+function toggleTodo(id) {
+  todoList = todoList.map(
+    (todo) => todo.id === id ? { ...todo, checked: !todo.checked } : todo
+  );
+  saveTodos();
+  renderTodoList();
+}
+function addTodo() {
+  const input = document.querySelector(".todo-input");
+  if (!input || !input.value.trim())
+    return;
+  const newTodo = {
+    id: Date.now().toString(),
+    text: input.value.trim(),
+    checked: false
+  };
+  todoList = [...todoList, newTodo];
+  saveTodos();
+  input.value = "";
+  renderTodoList();
+  input.focus();
+}
+function deleteTodo(id) {
+  todoList = todoList.filter((todo) => todo.id !== id);
+  saveTodos();
+  renderTodoList();
+}
+function togglePanel() {
+  const panel = document.querySelector(".todo-panel");
+  const ball = document.querySelector(".todo-ball");
+  if (panel) {
+    panel.classList.toggle("open");
+    ball?.classList.toggle("active");
+  }
+}
+function closePanel() {
+  const panel = document.querySelector(".todo-panel");
+  const ball = document.querySelector(".todo-ball");
+  if (panel) {
+    panel.classList.remove("open");
+    ball?.classList.remove("active");
+  }
+}
+function startDrag(e, target) {
+  isDragging = true;
+  dragTarget = target;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  const todoFloat = document.querySelector(".todo-float");
+  if (todoFloat) {
+    const rect = todoFloat.getBoundingClientRect();
+    initialLeft = rect.left;
+    initialTop = rect.top;
+    todoFloat.style.transform = "none";
+  }
+  e.preventDefault();
+  e.stopPropagation();
+}
+function handleMouseMove(e) {
+  if (!isDragging || !dragTarget)
+    return;
+  const todoFloat = document.querySelector(".todo-float");
+  if (!todoFloat)
+    return;
+  const deltaX = e.clientX - dragStartX;
+  const deltaY = e.clientY - dragStartY;
+  todoFloat.style.left = `${initialLeft + deltaX}px`;
+  todoFloat.style.top = `${initialTop + deltaY}px`;
+  todoFloat.style.right = "auto";
+  todoFloat.style.bottom = "auto";
+}
+function handleMouseUp() {
+  if (isDragging) {
+    isDragging = false;
+    dragTarget = null;
+  }
+}
+function handleBallClick(e) {
+  const startX = dragStartX;
+  const startY = dragStartY;
+  setTimeout(() => {
+    if (Math.abs(e.clientX - startX) < 5 && Math.abs(e.clientY - startY) < 5) {
+      togglePanel();
+    }
+  }, 0);
+}
+function initTodo() {
+  todoList = loadTodos();
+  const ball = document.querySelector(".todo-ball");
+  const header = document.querySelector(".todo-header");
+  const todoFloat = document.querySelector(".todo-float");
+  const panel = document.querySelector(".todo-panel");
+  const closeBtn = document.querySelector(".todo-close");
+  const addBtn = document.querySelector(".todo-add-btn");
+  const input = document.querySelector(".todo-input");
+  if (todoFloat) {
+    todoFloat.style.left = "50%";
+    todoFloat.style.top = "auto";
+    todoFloat.style.bottom = "20px";
+    todoFloat.style.right = "auto";
+    todoFloat.style.transform = "translateX(-50%)";
+  }
+  if (ball && todoFloat) {
+    ball.addEventListener("mousedown", (e) => startDrag(e, ball));
+    ball.addEventListener("click", handleBallClick);
+  }
+  if (header && todoFloat) {
+    header.addEventListener("mousedown", (e) => startDrag(e, header));
+  }
+  document.addEventListener("mousemove", handleMouseMove);
+  document.addEventListener("mouseup", handleMouseUp);
+  if (closeBtn) {
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closePanel();
+    });
+  }
+  document.addEventListener("click", (e) => {
+    if (!panel?.contains(e.target) && !ball?.contains(e.target)) {
+      closePanel();
+    }
+  });
+  if (addBtn) {
+    addBtn.addEventListener("click", addTodo);
+  }
+  if (input) {
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        addTodo();
+      }
+    });
+  }
+  renderTodoList();
+}
+document.addEventListener("nav", () => {
+  todoList = loadTodos();
+  renderTodoList();
+});
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initTodo);
+} else {
+  initTodo();
+}
+})();
 (function () {// node_modules/@floating-ui/core/dist/floating-ui.core.browser.min.mjs
 function t(t2) {
   return t2.split("-")[1];

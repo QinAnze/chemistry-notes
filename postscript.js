@@ -30,6 +30,236 @@ document.addEventListener("nav", () => {
   }
 });
 })();
+(function () {// quartz/components/scripts/quartz/components/scripts/radio.inline.ts
+var PLAYLIST_ID = "18095645858";
+var API_URL = "https://api.injahow.cn/meting/";
+var RadioPlayer = class _RadioPlayer {
+  audio;
+  playlist = [];
+  currentIndex = 0;
+  isPlaying = false;
+  isInitialized = false;
+  static instance = null;
+  static getInstance() {
+    if (!_RadioPlayer.instance) {
+      _RadioPlayer.instance = new _RadioPlayer();
+    }
+    return _RadioPlayer.instance;
+  }
+  constructor() {
+    if (_RadioPlayer.instance) {
+      return _RadioPlayer.instance;
+    }
+    this.audio = this.createAudioElement();
+    _RadioPlayer.instance = this;
+    this.init();
+  }
+  createAudioElement() {
+    let audio = document.getElementById("radio-audio");
+    if (!audio) {
+      audio = document.createElement("audio");
+      audio.id = "radio-audio";
+      audio.preload = "metadata";
+      audio.setAttribute("spa-preserve", "");
+      document.head.appendChild(audio);
+    }
+    return audio;
+  }
+  async init() {
+    if (this.isInitialized)
+      return;
+    await this.fetchPlaylist();
+    this.bindEvents();
+    this.loadVolume();
+    this.updateUI();
+    this.isInitialized = true;
+  }
+  async fetchPlaylist() {
+    if (this.playlist.length > 0)
+      return;
+    try {
+      const response = await fetch(`${API_URL}?type=playlist&id=${PLAYLIST_ID}`);
+      const data = await response.json();
+      if (Array.isArray(data)) {
+        this.playlist = data.map((item) => ({
+          id: item.id || item.url_id,
+          name: item.name || item.title,
+          artist: item.artist || item.author,
+          url: item.url,
+          pic: item.pic
+        }));
+      }
+      if (this.playlist.length > 0) {
+        this.loadSong(0);
+      }
+    } catch (error) {
+      console.error("Failed to fetch playlist:", error);
+      await this.fetchPlaylistAlternative();
+    }
+  }
+  async fetchPlaylistAlternative() {
+    if (this.playlist.length > 0)
+      return;
+    try {
+      const response = await fetch(`https://music.163.com/api/playlist/detail?id=${PLAYLIST_ID}`);
+      const data = await response.json();
+      if (data.playlist && data.playlist.tracks) {
+        this.playlist = data.playlist.tracks.slice(0, 20).map((track) => ({
+          id: track.id,
+          name: track.name,
+          artist: track.ar.map((a) => a.name).join(", "),
+          url: `https://music.163.com/song/media/outer/url?id=${track.id}.mp3`,
+          pic: track.al.picUrl
+        }));
+        if (this.playlist.length > 0) {
+          this.loadSong(0);
+        }
+      }
+    } catch (error) {
+      console.error("Alternative API also failed:", error);
+      this.updateSongName("\u52A0\u8F7D\u6B4C\u5355\u5931\u8D25");
+    }
+  }
+  bindEvents() {
+    const playBtn = document.getElementById("radio-play");
+    const prevBtn = document.getElementById("radio-prev");
+    const nextBtn = document.getElementById("radio-next");
+    const progressBar = document.getElementById("radio-progress-bar");
+    const volumeInput = document.getElementById("radio-volume");
+    playBtn?.addEventListener("click", () => this.togglePlay());
+    prevBtn?.addEventListener("click", () => this.playPrev());
+    nextBtn?.addEventListener("click", () => this.playNext());
+    progressBar?.addEventListener("click", (e) => this.seek(e));
+    if (volumeInput) {
+      volumeInput.addEventListener("input", (e) => {
+        const value = e.target.value;
+        this.setVolume(parseInt(value));
+      });
+    }
+    this.audio.addEventListener("timeupdate", () => this.updateProgress());
+    this.audio.addEventListener("ended", () => this.playNext());
+    this.audio.addEventListener("loadedmetadata", () => this.updateUI());
+    this.audio.addEventListener("error", () => {
+      console.error("Audio error, trying next song");
+      this.playNext();
+    });
+  }
+  loadSong(index) {
+    if (index < 0 || index >= this.playlist.length)
+      return;
+    this.currentIndex = index;
+    const song = this.playlist[index];
+    this.audio.src = song.url;
+    this.updateSongName(`${song.name} - ${song.artist}`);
+    this.updateUI();
+  }
+  updateSongName(text) {
+    const songNameEl = document.getElementById("radio-song-name");
+    if (songNameEl) {
+      songNameEl.textContent = text;
+      songNameEl.title = text;
+    }
+  }
+  togglePlay() {
+    if (this.playlist.length === 0)
+      return;
+    if (this.isPlaying) {
+      this.audio.pause();
+    } else {
+      this.audio.play().catch((error) => {
+        console.error("Play error:", error);
+      });
+    }
+    this.isPlaying = !this.isPlaying;
+    this.updatePlayButton();
+  }
+  playPrev() {
+    if (this.playlist.length === 0)
+      return;
+    let newIndex = this.currentIndex - 1;
+    if (newIndex < 0) {
+      newIndex = this.playlist.length - 1;
+    }
+    this.loadSong(newIndex);
+    if (this.isPlaying) {
+      this.audio.play().catch(() => {
+      });
+    }
+  }
+  playNext() {
+    if (this.playlist.length === 0)
+      return;
+    let newIndex = this.currentIndex + 1;
+    if (newIndex >= this.playlist.length) {
+      newIndex = 0;
+    }
+    this.loadSong(newIndex);
+    if (this.isPlaying) {
+      this.audio.play().catch(() => {
+      });
+    }
+  }
+  seek(e) {
+    const progressBar = document.getElementById("radio-progress-bar");
+    if (!progressBar)
+      return;
+    const rect = progressBar.getBoundingClientRect();
+    const percent = (e.clientX - rect.left) / rect.width;
+    const duration = this.audio.duration;
+    if (duration && !isNaN(duration)) {
+      this.audio.currentTime = percent * duration;
+    }
+  }
+  setVolume(value) {
+    this.audio.volume = value / 100;
+    localStorage.setItem("radio-volume", value.toString());
+  }
+  loadVolume() {
+    const savedVolume = localStorage.getItem("radio-volume");
+    const volume = savedVolume ? parseInt(savedVolume) : 80;
+    this.audio.volume = volume / 100;
+    const volumeInput = document.getElementById("radio-volume");
+    if (volumeInput) {
+      volumeInput.value = volume.toString();
+    }
+  }
+  updateProgress() {
+    const currentTime = this.audio.currentTime;
+    const duration = this.audio.duration;
+    if (duration && !isNaN(duration)) {
+      const percent = currentTime / duration * 100;
+      const progressFill = document.getElementById("radio-progress-fill");
+      if (progressFill) {
+        progressFill.style.width = `${percent}%`;
+      }
+      const timeEl = document.getElementById("radio-time");
+      if (timeEl) {
+        timeEl.textContent = `${this.formatTime(currentTime)} / ${this.formatTime(duration)}`;
+      }
+    }
+  }
+  updateUI() {
+    this.updateProgress();
+    this.updatePlayButton();
+  }
+  updatePlayButton() {
+    const playBtn = document.getElementById("radio-play");
+    if (playBtn) {
+      playBtn.textContent = this.isPlaying ? "\u23F8" : "\u25B6";
+    }
+  }
+  formatTime(seconds) {
+    if (isNaN(seconds))
+      return "00:00";
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  }
+};
+if (!window.radioPlayerInstance) {
+  window.radioPlayerInstance = RadioPlayer.getInstance();
+}
+})();
 (function () {var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -38807,6 +39037,14 @@ var it = class _it {
 
 // quartz/components/scripts/quartz/components/scripts/markmap.inline.ts
 var markmapInstance = null;
+function isDarkTheme() {
+  const saved = document.documentElement.getAttribute("saved-theme");
+  if (saved === "dark")
+    return true;
+  if (saved === "light")
+    return false;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
 function buildMarkmapContent() {
   const article = document.querySelector("article");
   if (!article)
@@ -38816,7 +39054,11 @@ function buildMarkmapContent() {
   headings.forEach((heading2) => {
     const level = parseInt(heading2.tagName[1]);
     const indent = "  ".repeat(level - 1);
-    const text3 = heading2.textContent?.trim() || "";
+    const clone2 = heading2.cloneNode(true);
+    const anchors = clone2.querySelectorAll("a");
+    anchors.forEach((a) => a.remove());
+    let text3 = clone2.textContent?.trim() || "";
+    text3 = text3.replace(/§/g, "").replace(/¶/g, "").replace(/¶/g, "").replace(/\u00A7/g, "").replace(/\u00B6/g, "").trim();
     if (text3) {
       lines.push(`${indent}- ${text3}`);
     }
@@ -38841,16 +39083,80 @@ function renderMarkmap() {
   container.innerHTML = "";
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("width", "100%");
-  svg.setAttribute("height", "300");
+  svg.setAttribute("height", "520");
   svg.style.width = "100%";
-  svg.style.height = "300px";
+  svg.style.height = "520px";
   container.appendChild(svg);
   const transformer = new Transformer();
   const { root: root3 } = transformer.transform(content);
-  markmapInstance = it.create(svg, null, root3);
+  const isDark = isDarkTheme();
+  const textColor = isDark ? "#e0e0e0" : "#333";
+  markmapInstance = it.create(svg, {
+    theme: {
+      color: {
+        bg0: "transparent",
+        bg1: isDark ? "#1a1a1a" : "#f8f8f8",
+        bg2: isDark ? "#2a2a2a" : "#f0f0f0",
+        border: isDark ? "#444" : "#ddd",
+        text: textColor,
+        textSecondary: isDark ? "#a0a0a0" : "#666",
+        highlight: "#667eea",
+        link: "#667eea"
+      },
+      font: {
+        sans: "inherit",
+        serif: "inherit",
+        mono: "inherit"
+      },
+      spacing: {
+        padding: 8,
+        radius: 4
+      }
+    },
+    autoFit: true,
+    duration: 300,
+    jsonOptions: {
+      initialExpandLevel: -1,
+      maxWidth: 280
+    }
+  }, root3);
+  const applyTextColor = () => {
+    const textElements = svg.querySelectorAll("text");
+    textElements.forEach((textEl) => {
+      textEl.setAttribute("fill", textColor);
+    });
+    const foreignObjects = svg.querySelectorAll("foreignObject");
+    foreignObjects.forEach((fo) => {
+      const contentDoc = fo.querySelector("div");
+      if (contentDoc) {
+        contentDoc.style.color = textColor;
+        contentDoc.style.fill = textColor;
+        const spans = contentDoc.querySelectorAll("span");
+        spans.forEach((span) => {
+          span.style.color = textColor;
+        });
+      }
+    });
+  };
+  setTimeout(applyTextColor, 100);
+  setTimeout(applyTextColor, 500);
 }
 document.addEventListener("nav", () => {
   setTimeout(renderMarkmap, 300);
+});
+var themeObserverTimer = null;
+var themeObserver = new MutationObserver(() => {
+  if (themeObserverTimer !== null) {
+    window.clearTimeout(themeObserverTimer);
+  }
+  themeObserverTimer = window.setTimeout(() => {
+    renderMarkmap();
+    themeObserverTimer = null;
+  }, 150);
+});
+themeObserver.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ["saved-theme"]
 });
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", renderMarkmap);
@@ -39862,7 +40168,342 @@ var module_default = Plausible;
 var { trackPageview } = module_default();
 document.addEventListener("nav", () => trackPageview());
 })();
-(function () {
-        window.spaNavigate = (url, _) => window.location.assign(url)
-        const event = new CustomEvent("nav", { detail: { slug: document.body.dataset.slug } })
-        document.dispatchEvent(event)})();
+(function () {// node_modules/micromorph/dist/index.js
+var T = (e) => (t, r) => t[`node${e}`] === r[`node${e}`];
+var b = T("Name");
+var C = T("Type");
+var g = T("Value");
+function M(e, t) {
+  if (e.attributes.length === 0 && t.attributes.length === 0)
+    return [];
+  let r = [], n = /* @__PURE__ */ new Map(), o = /* @__PURE__ */ new Map();
+  for (let s of e.attributes)
+    n.set(s.name, s.value);
+  for (let s of t.attributes) {
+    let a = n.get(s.name);
+    s.value === a ? n.delete(s.name) : (typeof a < "u" && n.delete(s.name), o.set(s.name, s.value));
+  }
+  for (let s of n.keys())
+    r.push({ type: 5, name: s });
+  for (let [s, a] of o.entries())
+    r.push({ type: 4, name: s, value: a });
+  return r;
+}
+function N(e, t = true) {
+  let r = `${e.localName}`;
+  for (let { name: n, value: o } of e.attributes)
+    t && n.startsWith("data-") || (r += `[${n}=${o}]`);
+  return r += e.innerHTML, r;
+}
+function h(e) {
+  switch (e.tagName) {
+    case "BASE":
+    case "TITLE":
+      return e.localName;
+    case "META": {
+      if (e.hasAttribute("name"))
+        return `meta[name="${e.getAttribute("name")}"]`;
+      if (e.hasAttribute("property"))
+        return `meta[name="${e.getAttribute("property")}"]`;
+      break;
+    }
+    case "LINK": {
+      if (e.hasAttribute("rel") && e.hasAttribute("href"))
+        return `link[rel="${e.getAttribute("rel")}"][href="${e.getAttribute("href")}"]`;
+      if (e.hasAttribute("href"))
+        return `link[href="${e.getAttribute("href")}"]`;
+      break;
+    }
+  }
+  return N(e);
+}
+function x(e) {
+  let [t, r = ""] = e.split("?");
+  return `${t}?t=${Date.now()}&${r.replace(/t=\d+/g, "")}`;
+}
+function c(e) {
+  if (e.nodeType === 1 && e.hasAttribute("data-persist"))
+    return e;
+  if (e.nodeType === 1 && e.localName === "script") {
+    let t = document.createElement("script");
+    for (let { name: r, value: n } of e.attributes)
+      r === "src" && (n = x(n)), t.setAttribute(r, n);
+    return t.innerHTML = e.innerHTML, t;
+  }
+  return e.cloneNode(true);
+}
+function R(e, t) {
+  if (e.children.length === 0 && t.children.length === 0)
+    return [];
+  let r = [], n = /* @__PURE__ */ new Map(), o = /* @__PURE__ */ new Map(), s = /* @__PURE__ */ new Map();
+  for (let a of e.children)
+    n.set(h(a), a);
+  for (let a of t.children) {
+    let i = h(a), u = n.get(i);
+    u ? N(a, false) !== N(u, false) && o.set(i, c(a)) : s.set(i, c(a)), n.delete(i);
+  }
+  for (let a of e.childNodes) {
+    if (a.nodeType === 1) {
+      let i = h(a);
+      if (n.has(i)) {
+        r.push({ type: 1 });
+        continue;
+      } else if (o.has(i)) {
+        let u = o.get(i);
+        r.push({ type: 3, attributes: M(a, u), children: I(a, u) });
+        continue;
+      }
+    }
+    r.push(void 0);
+  }
+  for (let a of s.values())
+    r.push({ type: 0, node: c(a) });
+  return r;
+}
+function I(e, t) {
+  let r = [], n = Math.max(e.childNodes.length, t.childNodes.length);
+  for (let o = 0; o < n; o++) {
+    let s = e.childNodes.item(o), a = t.childNodes.item(o);
+    r[o] = p(s, a);
+  }
+  return r;
+}
+function p(e, t) {
+  if (!e)
+    return { type: 0, node: c(t) };
+  if (!t)
+    return { type: 1 };
+  if (C(e, t)) {
+    if (e.nodeType === 3) {
+      let r = e.nodeValue, n = t.nodeValue;
+      if (r.trim().length === 0 && n.trim().length === 0)
+        return;
+    }
+    if (e.nodeType === 1) {
+      if (b(e, t)) {
+        let r = e.tagName === "HEAD" ? R : I;
+        return { type: 3, attributes: M(e, t), children: r(e, t) };
+      }
+      return { type: 2, node: c(t) };
+    } else
+      return e.nodeType === 9 ? p(e.documentElement, t.documentElement) : g(e, t) ? void 0 : { type: 2, value: t.nodeValue };
+  }
+  return { type: 2, node: c(t) };
+}
+function $(e, t) {
+  if (t.length !== 0)
+    for (let { type: r, name: n, value: o } of t)
+      r === 5 ? e.removeAttribute(n) : r === 4 && e.setAttribute(n, o);
+}
+async function O(e, t, r) {
+  if (!t)
+    return;
+  let n;
+  switch (e.nodeType === 9 ? (e = e.documentElement, n = e) : r ? n = r : n = e, t.type) {
+    case 0: {
+      let { node: o } = t;
+      e.appendChild(o);
+      return;
+    }
+    case 1: {
+      if (!n)
+        return;
+      e.removeChild(n);
+      return;
+    }
+    case 2: {
+      if (!n)
+        return;
+      let { node: o, value: s } = t;
+      if (typeof s == "string") {
+        n.nodeValue = s;
+        return;
+      }
+      n.replaceWith(o);
+      return;
+    }
+    case 3: {
+      if (!n)
+        return;
+      let { attributes: o, children: s } = t;
+      $(n, o);
+      let a = Array.from(n.childNodes);
+      await Promise.all(s.map((i, u) => O(n, i, a[u])));
+      return;
+    }
+  }
+}
+function P(e, t) {
+  let r = p(e, t);
+  return O(e, r);
+}
+
+// node_modules/github-slugger/index.js
+var own = Object.hasOwnProperty;
+
+// quartz/util/path.ts
+function getFullSlug(window2) {
+  const res = window2.document.body.dataset.slug;
+  return res;
+}
+
+// quartz/components/scripts/quartz/components/scripts/spa.inline.ts
+var NODE_TYPE_ELEMENT = 1;
+var announcer = document.createElement("route-announcer");
+var isElement = (target) => target?.nodeType === NODE_TYPE_ELEMENT;
+var isLocalUrl = (href) => {
+  try {
+    const url = new URL(href);
+    if (window.location.origin === url.origin) {
+      if (url.pathname === window.location.pathname) {
+        return !url.hash;
+      }
+      return true;
+    }
+  } catch (e) {
+  }
+  return false;
+};
+var getOpts = ({ target }) => {
+  if (!isElement(target))
+    return;
+  const a = target.closest("a");
+  if (!a)
+    return;
+  if ("routerIgnore" in a.dataset)
+    return;
+  const { href } = a;
+  if (!isLocalUrl(href))
+    return;
+  return { url: new URL(href), scroll: "routerNoscroll" in a.dataset ? false : void 0 };
+};
+function notifyNav(url) {
+  const event = new CustomEvent("nav", { detail: { url } });
+  document.dispatchEvent(event);
+}
+var p2;
+async function navigate(url, isBack = false) {
+  p2 = p2 || new DOMParser();
+  const contents = await fetch(`${url}`).then((res) => res.text()).catch(() => {
+    window.location.assign(url);
+  });
+  if (!contents)
+    return;
+  const html = p2.parseFromString(contents, "text/html");
+  let title = html.querySelector("title")?.textContent;
+  if (title) {
+    document.title = title;
+  } else {
+    const h1 = document.querySelector("h1");
+    title = h1?.innerText ?? h1?.textContent ?? url.pathname;
+  }
+  if (announcer.textContent !== title) {
+    announcer.textContent = title;
+  }
+  announcer.dataset.persist = "";
+  html.body.appendChild(announcer);
+  const preservedElements = [];
+  document.body.querySelectorAll("[data-spa-preserve]").forEach((el) => {
+    preservedElements.push({
+      el,
+      nextSibling: el.nextSibling,
+      parent: el.parentElement
+    });
+    el.remove();
+  });
+  P(document.body, html.body);
+  preservedElements.forEach(({ el }) => {
+    const existingEl = document.getElementById(el.id);
+    if (existingEl) {
+      existingEl.remove();
+    }
+    document.body.appendChild(el);
+  });
+  if (!isBack) {
+    if (url.hash) {
+      const el = document.getElementById(url.hash.substring(1));
+      el?.scrollIntoView();
+    } else {
+      window.scrollTo({ top: 0 });
+    }
+  }
+  const elementsToRemove = document.head.querySelectorAll(":not([spa-preserve])");
+  elementsToRemove.forEach((el) => el.remove());
+  const elementsToAdd = html.head.querySelectorAll(":not([spa-preserve])");
+  elementsToAdd.forEach((el) => document.head.appendChild(el));
+  history.pushState({}, "", url);
+  notifyNav(getFullSlug(window));
+  delete announcer.dataset.persist;
+}
+window.spaNavigate = navigate;
+function createRouter() {
+  if (typeof window !== "undefined") {
+    window.addEventListener("click", async (event) => {
+      const { url } = getOpts(event) ?? {};
+      if (!url)
+        return;
+      event.preventDefault();
+      try {
+        navigate(url, false);
+      } catch (e) {
+        window.location.assign(url);
+      }
+    });
+    window.addEventListener("popstate", (event) => {
+      const { url } = getOpts(event) ?? {};
+      if (window.location.hash && window.location.pathname === url?.pathname)
+        return;
+      try {
+        navigate(new URL(window.location.toString()), true);
+      } catch (e) {
+        window.location.reload();
+      }
+      return;
+    });
+  }
+  return new class Router {
+    go(pathname) {
+      const url = new URL(pathname, window.location.toString());
+      return navigate(url, false);
+    }
+    back() {
+      return window.history.back();
+    }
+    forward() {
+      return window.history.forward();
+    }
+  }();
+}
+createRouter();
+notifyNav(getFullSlug(window));
+if (typeof window !== "undefined") {
+  window.addEventListener("scroll", () => {
+    const body = document.body;
+    if (window.scrollY > 50) {
+      body.classList.add("scrolled");
+    } else {
+      body.classList.remove("scrolled");
+    }
+  });
+}
+if (!customElements.get("route-announcer")) {
+  const attrs = {
+    "aria-live": "assertive",
+    "aria-atomic": "true",
+    style: "position: absolute; left: 0; top: 0; clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px"
+  };
+  customElements.define(
+    "route-announcer",
+    class RouteAnnouncer extends HTMLElement {
+      constructor() {
+        super();
+      }
+      connectedCallback() {
+        for (const [key, value] of Object.entries(attrs)) {
+          this.setAttribute(key, value);
+        }
+      }
+    }
+  );
+}
+})();

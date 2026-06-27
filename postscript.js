@@ -40348,6 +40348,13 @@ function getFullSlug(window2) {
 }
 
 // quartz/components/scripts/quartz/components/scripts/spa.inline.ts
+function normalizeRelativeURLs(el, base) {
+  const update = (el2, attr, base2) => {
+    el2.setAttribute(attr, new URL(el2.getAttribute(attr), base2).pathname);
+  };
+  el.querySelectorAll('[href^="./"], [href^="../"]').forEach((item) => update(item, "href", base));
+  el.querySelectorAll('[src^="./"], [src^="../"]').forEach((item) => update(item, "src", base));
+}
 var NODE_TYPE_ELEMENT = 1;
 var announcer = document.createElement("route-announcer");
 var isElement = (target) => target?.nodeType === NODE_TYPE_ELEMENT;
@@ -40402,7 +40409,23 @@ async function navigate(url, isBack = false) {
   }
   announcer.dataset.persist = "";
   html.body.appendChild(announcer);
+  const preservedElements = [];
+  document.body.querySelectorAll("[data-spa-preserve]").forEach((el) => {
+    preservedElements.push({
+      el,
+      nextSibling: el.nextSibling,
+      parent: el.parentElement
+    });
+    el.remove();
+  });
   P(document.body, html.body);
+  preservedElements.forEach(({ el }) => {
+    const existingEl = document.getElementById(el.id);
+    if (existingEl) {
+      existingEl.remove();
+    }
+    document.body.appendChild(el);
+  });
   if (!isBack) {
     if (url.hash) {
       const el = document.getElementById(url.hash.substring(1));
@@ -40416,6 +40439,7 @@ async function navigate(url, isBack = false) {
   const elementsToAdd = html.head.querySelectorAll(":not([spa-preserve])");
   elementsToAdd.forEach((el) => document.head.appendChild(el));
   history.pushState({}, "", url);
+  normalizeRelativeURLs(document.body, url);
   notifyNav(getFullSlug(window));
   delete announcer.dataset.persist;
 }
@@ -40460,6 +40484,16 @@ function createRouter() {
 }
 createRouter();
 notifyNav(getFullSlug(window));
+if (typeof window !== "undefined") {
+  window.addEventListener("scroll", () => {
+    const body = document.body;
+    if (window.scrollY > 50) {
+      body.classList.add("scrolled");
+    } else {
+      body.classList.remove("scrolled");
+    }
+  });
+}
 if (!customElements.get("route-announcer")) {
   const attrs = {
     "aria-live": "assertive",

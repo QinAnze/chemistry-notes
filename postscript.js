@@ -33,6 +33,8 @@ document.addEventListener("nav", () => {
 (function () {// quartz/components/scripts/quartz/components/scripts/radio.inline.ts
 var PLAYLIST_ID = "18095645858";
 var API_URL = "https://api.injahow.cn/meting/";
+var CACHE_KEY = "radio-playlist-cache";
+var CACHE_EXPIRY = 30 * 60 * 1e3;
 var RadioPlayer = class _RadioPlayer {
   audio;
   playlist = [];
@@ -75,8 +77,17 @@ var RadioPlayer = class _RadioPlayer {
     this.isInitialized = true;
   }
   async fetchPlaylist() {
-    if (this.playlist.length > 0)
-      return;
+    const cacheData = localStorage.getItem(CACHE_KEY);
+    if (cacheData) {
+      try {
+        const { playlist, timestamp } = JSON.parse(cacheData);
+        if (playlist.length > 0 && Date.now() - timestamp < CACHE_EXPIRY) {
+          this.playlist = playlist;
+          return;
+        }
+      } catch {
+      }
+    }
     try {
       const response = await fetch(`${API_URL}?type=playlist&id=${PLAYLIST_ID}`);
       const data = await response.json();
@@ -87,6 +98,10 @@ var RadioPlayer = class _RadioPlayer {
           artist: item.artist || item.author,
           url: item.url,
           pic: item.pic
+        }));
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          playlist: this.playlist,
+          timestamp: Date.now()
         }));
       }
       if (this.playlist.length > 0) {
